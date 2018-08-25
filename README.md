@@ -6,6 +6,7 @@ Para poder ejecutar el proyecto de ejemplo necesitas tener instalada las siguien
 en tu computador:
 
 1. git ([como instalar git][git_install])
+2. Java versión 7 u 8.
 3. maven ([como instalar maven][maven_install])
 
 [git_install]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
