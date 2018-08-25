@@ -1,19 +1,9 @@
-/**
-  * @author     Allware Ltda. (http://www.allware.cl)
-  * @copyright  2015 Transbank S.A. (http://www.tranbank.cl)
-  * @date       Jan 2016
-  * @license    GNU LGPL
-  * @version    2.0.1
-  *
-  */
-
-
 <%
-    String environment = "INTEGRACION";         
-   
+    String environment = "INTEGRACION";
+
     String commerce_code = "597020000546";
-         
-    
+
+
     /** Llave Privada */
     String private_key = "-----BEGIN RSA PRIVATE KEY-----\n" +
 "MIIEowIBAAKCAQEAxjhtR6728EnnGnFOWmDzZRmQDnpvLzDpfq2pIZI9wrrc7ZTz\n" +

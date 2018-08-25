@@ -1,20 +1,10 @@
-/**
-  * @author     Allware Ltda. (http://www.allware.cl)
-  * @copyright  2015 Transbank S.A. (http://www.tranbank.cl)
-  * @date       Jan 2016
-  * @license    GNU LGPL
-  * @version    2.0.1
-  *
-  */
-
-
 <%
-             
+
     String environment = "INTEGRACION";
-    
+
     String commerce_code = "597020000541";
-         
-    
+
+
     	String public_cert = "-----BEGIN CERTIFICATE-----\n" +
 "MIIDujCCAqICCQCZ42cY33KRTzANBgkqhkiG9w0BAQsFADCBnjELMAkGA1UEBhMC\n" +
 "Q0wxETAPBgNVBAgMCFNhbnRpYWdvMRIwEAYDVQQKDAlUcmFuc2JhbmsxETAPBgNV\n" +
@@ -66,7 +56,7 @@
 "MtdweTnQt73lN2cnYedRUhw9UTfPzYu7jdXCUAyAD4IEjFQrswk2x04=\n" +
 "-----END RSA PRIVATE KEY-----";
 
-    
+
     session.setAttribute("ENVIRONMENT", environment);
     session.setAttribute("COMMERCE_CODE",commerce_code);
     session.setAttribute("PRIVATE_KEY",private_key);
