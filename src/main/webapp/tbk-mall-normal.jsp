@@ -53,7 +53,6 @@
         configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
         configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
         configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setWebpayCert((String)session.getAttribute("WEBPAY_CERT"));
         configuration.setStoreCodes((ArrayList)session.getAttribute("STORE_CODES"));
         configuration.setEnvironment((String)session.getAttribute("ENVIRONMENT"));
                 

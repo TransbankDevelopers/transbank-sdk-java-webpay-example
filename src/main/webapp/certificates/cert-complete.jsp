@@ -66,33 +66,11 @@
 "93RRsSXHXr+g4jnVE0e6qWTgJHGNlsDaqS3MANwCGTsjv4kUQxUbhiooeKEgwA==\n" +
 "-----END CERTIFICATE-----";
 
-    /** Certificado Server */
-   
-    String webpay_cert = "-----BEGIN CERTIFICATE-----\n" +
-"MIIDKTCCAhECBFZl7uIwDQYJKoZIhvcNAQEFBQAwWTELMAkGA1UEBhMCQ0wxDjAMBgNVBAgMBUNo\n" +
-"aWxlMREwDwYDVQQHDAhTYW50aWFnbzEMMAoGA1UECgwDa2R1MQwwCgYDVQQLDANrZHUxCzAJBgNV\n" +
-"BAMMAjEwMB4XDTE1MTIwNzIwNDEwNloXDTE4MDkwMjIwNDEwNlowWTELMAkGA1UEBhMCQ0wxDjAM\n" +
-"BgNVBAgMBUNoaWxlMREwDwYDVQQHDAhTYW50aWFnbzEMMAoGA1UECgwDa2R1MQwwCgYDVQQLDANr\n" +
-"ZHUxCzAJBgNVBAMMAjEwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAizJUWTDC7nfP\n" +
-"3jmZpWXFdG9oKyBrU0Bdl6fKif9a1GrwevThsU5Dq3wiRfYvomStNjFDYFXOs9pRIxqX2AWDybjA\n" +
-"X/+bdDTVbM+xXllA9stJY8s7hxAvwwO7IEuOmYDpmLKP7J+4KkNH7yxsKZyLL9trG3iSjV6Y6SO5\n" +
-"EEhUsdxoJFAow/h7qizJW0kOaWRcljf7kpqJAL3AadIuqV+hlf+Ts/64aMsfSJJA6xdbdp9ddgVF\n" +
-"oqUl1M8vpmd4glxlSrYmEkbYwdI9uF2d6bAeaneBPJFZr6KQqlbbrVyeJZqmMlEPy0qPco1TIxrd\n" +
-"EHlXgIFJLyyMRAyjX9i4l70xjwIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQBn3tUPS6e2USgMrPKp\n" +
-"sxU4OTfW64+mfD6QrVeBOh81f6aGHa67sMJn8FE/cG6jrUmX/FP1/Cpbpvkm5UUlFKpgaFfHv+Kg\n" +
-"CpEvgcRIv/OeIi6Jbuu3NrPdGPwzYkzlOQnmgio5RGb6GSs+OQ0mUWZ9J1+YtdZc+xTga0x7nsCT\n" +
-"5xNcUXsZKhyjoKhXtxJm3eyB3ysLNyuL/RHy/EyNEWiUhvt1SIePnW+Y4/cjQWYwNqSqMzTSW9TP\n" +
-"2QR2bX/W2H6ktRcLsgBK9mq7lE36p3q6c9DtZJE+xfA4NGCYWM9hd8pbusnoNO7AFxJZOuuvLZI7\n" +
-"JvD7YLhPvCYKry7N6x3l\n" +
-"-----END CERTIFICATE-----";
-    
-
 
     session.setAttribute("ENVIRONMENT", environment);
     session.setAttribute("COMMERCE_CODE",commerce_code);
     session.setAttribute("PRIVATE_KEY",private_key);
     session.setAttribute("PUBLIC_CERT",public_cert);
-    session.setAttribute("WEBPAY_CERT", webpay_cert);  
-    response.sendRedirect("../tbk-complete.jsp");   
+    response.sendRedirect("../tbk-complete.jsp");
     
  %> 
