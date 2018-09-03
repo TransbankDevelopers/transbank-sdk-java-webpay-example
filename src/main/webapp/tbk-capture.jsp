@@ -21,13 +21,7 @@
         String urlNextStep="";
         if(action == null)action="init";
         
-        Configuration configuration = new Configuration();
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment("INTEGRACION");
-                
-        Webpay webpay = new Webpay(configuration);
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusCapture(););
 
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      

@@ -23,15 +23,9 @@
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
         String buyOrder = "", authorizationCode="", authorizedAmount=""; 
-        
-        Configuration configuration = new Configuration();
-        
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment((String)session.getAttribute("ENVIRONMENT"));
-                
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusNormal());
+                        
+        Configuration configuration = Configuration.forTestingWebpayPlusNormal();
+        Webpay webpay = new Webpay(configuration);
        
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      

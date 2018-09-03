@@ -23,13 +23,8 @@
         String action = request.getParameter("action");  
         if(action == null)action="OneClickInitInscription";
         
-        Configuration configuration = new Configuration();
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment((String)session.getAttribute("ENVIRONMENT"));
-                
-        Webpay webpay = new Webpay(configuration);
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayOneClick());
+
         String username = "ebertuzzi2";
         String tbkUser = "";
         
