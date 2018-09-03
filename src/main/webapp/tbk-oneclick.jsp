@@ -23,7 +23,7 @@
         String action = request.getParameter("action");  
         if(action == null)action="OneClickInitInscription";
         
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayOneClick());
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayOneClickNormal());
 
         String username = "ebertuzzi2";
         String tbkUser = "";
