@@ -1,0 +1,10 @@
+dist: trusty
+language: java
+jdk: oraclejdk8
+addons:
+  chrome: stable
+before_install:
+  - mvn jetty:run &
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8080 &
+
+
