@@ -20,11 +20,15 @@ public class ExampleTest {
     @Rule
     public ScreenShooter screenShooter = ScreenShooter.failedTests();
 
-    @Before
-    public void resetBrowser() {
+    @BeforeClass
+    public static void setUp() {
         timeout = 10000;
         baseUrl = "http://localhost:8080";
         startMaximized = true;
+    }
+
+    @Before
+    public void resetBrowser() {
         open("/");
     }
 
@@ -33,13 +37,13 @@ public class ExampleTest {
         $(byText("Webpay Normal")).click();
 
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
-        $("input[type=submit]").click();
+        $("input[type=submit]").click(); // Ejecutar Pago con Webpay
 
         $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
         $("#TBK_TIPO_TARJETA").click();
         $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
         $("#TBK_CVV").setValue("123").pressTab();
-        $("#button").click();
+        $("#button").click(); // Pagar
 
         switchTo().frame("transicion");
         $("body").shouldHave(text("BIENVENIDO"));
@@ -56,6 +60,38 @@ public class ExampleTest {
 
         $("body").shouldHave(text("Transaccion Finalizada"));
         $("input[type=submit]").click(); // Anular Transaccion
+
+        $("body").shouldHave(text("Anulacion realizada con exito"));
+
+    }
+
+    @Test
+    public void testWebpayPlusMall() {
+        $(byText("Webpay Mall Normal")).click();
+
+        $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
+        $("input[type=submit]").click(); // Ejecutar Pago con Webpay
+
+        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
+        $("#TBK_TIPO_TARJETA").click();
+        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
+        $("#button").click(); // Pagar
+
+        switchTo().frame("transicion");
+        $("body").shouldHave(text("BIENVENIDO"));
+        $("#rutClient").setValue("11.111.111-1").pressTab();
+        $("#passwordClient").setValue("123").pressTab();
+        $(byValue("Aceptar")).click();
+        $(byValue("Continuar")).click();
+
+        $("body").shouldHave(text("Pago ACEPTADO por webpay"));
+        $("input[type=submit]").click();
+
+        $("body").shouldHave(text("Su transacción fue realizada con éxito."));
+        $("#button4").click(); // Continuar
+
+        $("body").shouldHave(text("Transaccion Finalizada"));
+        $("input[type=submit]").click(); // Anular
 
         $("body").shouldHave(text("Anulacion realizada con exito"));
 
