@@ -21,7 +21,7 @@
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
         
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusMall(););
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusMall());
 
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      

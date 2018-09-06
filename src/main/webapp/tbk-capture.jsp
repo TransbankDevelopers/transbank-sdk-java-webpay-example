@@ -21,7 +21,7 @@
         String urlNextStep="";
         if(action == null)action="init";
         
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusCapture(););
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusCapture());
 
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      
