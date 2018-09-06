@@ -25,7 +25,7 @@
   </tr>
   <tr>
     <td><h3>Transacci&oacute;n OneClick</h3></td>
-    <td><h3><a href="tbk-oneclick.jsp">Webpay OneClick</a></h3></td> 
+    <td><h3><a href="tbk-oneclick.jsp">Webpay OneClick Normal</a></h3></td>
     <td><h3> - </h3></td>
   </tr>
 </table>

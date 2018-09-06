@@ -128,7 +128,7 @@
             </div>
                     <%if(resultInit.getToken()!=null){    %>
             <p><samp>Sesion iniciada con exito en Webpay</samp></p>
-            <br><form action='<%=resultInit.getUrl()%>' method="post"><input type="hidden" name="token_ws" value='<%=resultInit.getToken()%>'><input type="submit" value="Ejecutar Pago con WebPay"></form>
+            <br><form action='<%=resultInit.getUrl()%>' method="post"><input type="hidden" name="token_ws" value='<%=resultInit.getToken()%>'><input type="submit" value="Ejecutar Pago con Webpay"></form>
             <br>                        
                     <%}else{                                    %>                    
             <p><samp>Ocurrio un error en la operacion InitTransaction Webpay.</samp></p>                            
