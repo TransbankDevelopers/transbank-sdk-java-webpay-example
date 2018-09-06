@@ -11,11 +11,13 @@
     <td><h3><a href="tbk-mall-normal.jsp">Webpay Plus Mall</a></h3></td>
     <td><h3><a href="tbk-nullify-mall-normal.jsp">Webpay Plus Mall Anulaci&oacute;n </a></h3></td>
   </tr>
+<!--
   <tr>
     <td><h3>Transacci&oacute;n Completa</h3></td>
     <td><h3><a href="certificates/cert-complete.jsp">Webpay Completa</a></h3></td> 
     <td><h3><a href="certificates/cert-nullify-complete.jsp">Webpay Completa Anulaci&oacute;n </a></h3></td>
   </tr>
+-->
   <tr>
     <td><h3>Transacci&oacute;n Captura Diferida</h3></td>
     <td><h3><a href="tbk-normal-capture.jsp">Webpay Normal Captura Diferida</a></h3></td> 
