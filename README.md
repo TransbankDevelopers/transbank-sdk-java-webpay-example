@@ -39,3 +39,13 @@ Si todo ha salido bien deberías poder acceder al ejemplo en la url  `http://loc
 - Contraseña autenticación con emisor: 123
 
 
+## Ejecutar tests automáticos
+
+Debes tener corriendo el servidor web (según lo indicado más arriba) y luego
+ejecutar:
+
+```
+mvn test -Dselenide.headless=false
+```
+
+Nota: debes tener Google Chrome instalado en tu computador.
