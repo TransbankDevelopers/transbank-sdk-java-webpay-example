@@ -62,7 +62,6 @@ public class ExampleTest {
         $("input[type=submit]").click(); // Anular Transaccion
 
         $("body").shouldHave(text("Anulacion realizada con exito"));
-
     }
 
     @Test
@@ -94,9 +93,39 @@ public class ExampleTest {
         $("input[type=submit]").click(); // Anular
 
         $("body").shouldHave(text("Anulacion realizada con exito"));
-
     }
 
+    @Test
+    public void testWebpayPlusCapture() {
+        $(byText("Webpay Plus Captura Diferida")).click();
+
+        $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
+        $("input[type=submit]").click(); // Ejecutar Pago con Webpay
+
+        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
+        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
+        $("#TBK_CVV").setValue("123").pressTab();
+
+        $("#button").click(); // Pagar
+
+        switchTo().frame("transicion");
+        $("body").shouldHave(text("BIENVENIDO"));
+        $("#rutClient").setValue("11.111.111-1").pressTab();
+        $("#passwordClient").setValue("123").pressTab();
+        $(byValue("Aceptar")).click();
+        $(byValue("Continuar")).click();
+
+        $("body").shouldHave(text("Pago ACEPTADO por webpay"));
+        $("input[type=submit]").click();
+
+        $("body").shouldHave(text("Su transacción fue realizada con éxito."));
+        $("#button4").click(); // Continuar
+
+        $("body").shouldHave(text("Transaccion Finalizada"));
+        $("input[type=submit]").click(); // Realizar Captura diferida
+
+        $("body").shouldHave(text("Pago ACEPTADO por webpay"));
+    }
 
     @AfterClass
     public static void logout() {
