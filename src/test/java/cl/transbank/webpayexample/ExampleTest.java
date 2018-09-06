@@ -34,7 +34,7 @@ public class ExampleTest {
 
     @Test
     public void testWebpayPlusNormal() {
-        $(byText("Webpay Normal")).click();
+        $(byText("Webpay Plus Normal")).click();
 
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Pago con Webpay
@@ -67,7 +67,7 @@ public class ExampleTest {
 
     @Test
     public void testWebpayPlusMall() {
-        $(byText("Webpay Mall Normal")).click();
+        $(byText("Webpay Plus Mall")).click();
 
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Pago con Webpay
