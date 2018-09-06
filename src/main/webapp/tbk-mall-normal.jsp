@@ -26,14 +26,7 @@
         
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
-        
-        Configuration configuration = new Configuration();
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setStoreCodes((ArrayList)session.getAttribute("STORE_CODES"));
-        configuration.setEnvironment((String)session.getAttribute("ENVIRONMENT"));
-                
+        Configuration configuration = Configuration.forTestingWebpayPlusMall();
         Webpay webpay = new Webpay(configuration);
        
         /** Si la URL no trae data muestra Menú */
@@ -57,7 +50,8 @@
                 buyOrder = String.valueOf(Result);
                 sessionId = "aj2h4kj2";
                 ArrayList storeCodes = new ArrayList();
-                storeCodes = configuration.getStoreCodes();
+                storeCodes.add("597044444402");
+                storeCodes.add("597044444403");
                                
                 
                 //Para el ejemplo se usaran 2 comercios. Los que fueron definidos en archivo cert-mall-normal.jsp
@@ -248,7 +242,7 @@
                     <h3>result</h3>
                     <%out.print("[token_ws] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=request.getParameter("authorizationCode")%>"> 

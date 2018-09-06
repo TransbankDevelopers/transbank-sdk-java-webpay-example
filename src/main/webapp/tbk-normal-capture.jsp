@@ -24,13 +24,7 @@
         String urlNextStep = "";
         if(action == null)action="webpayNormalInit";
         
-        Configuration configuration = new Configuration();
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment("INTEGRACION");
-                
-        Webpay webpay = new Webpay(configuration);
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusCapture());
        
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      
@@ -195,7 +189,7 @@
                     <h3>result</h3>
                     <%out.print("[token] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
                 <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 
