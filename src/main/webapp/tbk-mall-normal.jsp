@@ -50,8 +50,8 @@
                 buyOrder = String.valueOf(Result);
                 sessionId = "aj2h4kj2";
                 ArrayList storeCodes = new ArrayList();
-                storeCodes.add("597020000543");
-                storeCodes.add("597020000544");
+                storeCodes.add("597044444402");
+                storeCodes.add("597044444403");
                                
                 
                 //Para el ejemplo se usaran 2 comercios. Los que fueron definidos en archivo cert-mall-normal.jsp
