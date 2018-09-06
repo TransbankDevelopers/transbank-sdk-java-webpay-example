@@ -137,7 +137,7 @@
                     <h3>result</h3>
                     <%out.print("[token] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br>
             <a href=".">&laquo; volver a index</a>
         <%       

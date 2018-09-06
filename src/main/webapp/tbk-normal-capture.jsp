@@ -189,7 +189,7 @@
                     <h3>result</h3>
                     <%out.print("[token] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
                 <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 

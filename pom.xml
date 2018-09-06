@@ -8,6 +8,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>webpay-example</name>
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -20,6 +24,18 @@
             <artifactId>transbank-sdk-java</artifactId>
             <version>1.4.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>4.14.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -28,6 +44,28 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.4.11.v20180605</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>selenide.browser</name>
+                            <value>Chrome</value>
+                        </property>
+                        <property>
+                            <name>selenide.headless</name>
+                            <value>true</value>
+                        </property>
+                        <property>
+                            <name>selenide.reports</name>
+                            <value>selenide-reports</value>
+                        </property>
+
+                    </systemProperties>
+                </configuration>
             </plugin>
         </plugins>
     </build>

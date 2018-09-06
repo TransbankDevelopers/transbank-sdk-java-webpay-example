@@ -303,7 +303,7 @@
 
                     
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="token_ws" value="<%=token%>">
                 <input type="hidden" name="authorizationCode" value="<%=request.getParameter("authorizationCode")%>">

@@ -242,7 +242,7 @@
                     <h3>result</h3>
                     <%out.print("[token_ws] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=request.getParameter("authorizationCode")%>"> 
