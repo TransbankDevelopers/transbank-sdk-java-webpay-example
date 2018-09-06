@@ -23,15 +23,9 @@
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
         String buyOrder = "", authorizationCode="", authorizedAmount=""; 
-        
-        Configuration configuration = new Configuration();
-        
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment((String)session.getAttribute("ENVIRONMENT"));
-                
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusNormal());
+                        
+        Configuration configuration = Configuration.forTestingWebpayPlusNormal();
+        Webpay webpay = new Webpay(configuration);
        
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      
@@ -84,7 +78,7 @@
             </div>
                     <%if(result.getToken()!=null){    %>
             <p><samp>Sesion iniciada con exito en Webpay</samp></p>
-            <br><form action='<%=result.getUrl()%>' method="post"><input type="hidden" name="token_ws" value='<%=result.getToken()%>'><input type="submit" value="Ejecutar Pago con WebPay"></form>
+            <br><form action='<%=result.getUrl()%>' method="post"><input type="hidden" name="token_ws" value='<%=result.getToken()%>'><input type="submit" value="Ejecutar Pago con Webpay"></form>
             <br>                        
                     <%}else{                                    %>                    
             <p><samp>Ocurrio un error en la operacion InitTransaction Webpay.</samp></p>                            
@@ -191,7 +185,7 @@
                     <h3>result</h3>
                     <%out.print("[token_ws] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 

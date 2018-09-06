@@ -24,13 +24,7 @@
         String urlNextStep = "";
         if(action == null)action="webpayNormalInit";
         
-        Configuration configuration = new Configuration();
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment("INTEGRACION");
-                
-        Webpay webpay = new Webpay(configuration);
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusCapture());
        
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      
@@ -83,7 +77,7 @@
             </div>
                     <%if(resultInit.getToken()!=null){    %>
             <p><samp>Sesion iniciada con exito en Webpay</samp></p>
-            <br><form action='<%=resultInit.getUrl()%>' method="post"><input type="hidden" name="token_ws" value='<%=resultInit.getToken()%>'><input type="submit" value="Ejecutar Pago con WebPay"></form>
+            <br><form action='<%=resultInit.getUrl()%>' method="post"><input type="hidden" name="token_ws" value='<%=resultInit.getToken()%>'><input type="submit" value="Ejecutar Pago con Webpay"></form>
             <br>                        
                     <%}else{                                    %>                    
             <p><samp>Ocurrio un error en la operacion InitTransaction Webpay.</samp></p>                            
@@ -195,7 +189,7 @@
                     <h3>result</h3>
                     <%out.print("[token] = "+token);%> 
             </div>
-            <p><samp>Transacion Finalizada</samp></p>
+            <p><samp>Transaccion Finalizada</samp></p>
             <br><form action="<%=urlNextStep%>" method="post">
                 <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
                 <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 

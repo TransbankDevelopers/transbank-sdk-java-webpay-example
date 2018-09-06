@@ -23,13 +23,8 @@
         String action = request.getParameter("action");  
         if(action == null)action="OneClickInitInscription";
         
-        Configuration configuration = new Configuration();
-        configuration.setCommerceCode((String)session.getAttribute("COMMERCE_CODE"));
-        configuration.setPrivateKey((String)session.getAttribute("PRIVATE_KEY"));
-        configuration.setPublicCert((String)session.getAttribute("PUBLIC_CERT"));
-        configuration.setEnvironment((String)session.getAttribute("ENVIRONMENT"));
-                
-        Webpay webpay = new Webpay(configuration);
+        Webpay webpay = new Webpay(Configuration.forTestingWebpayOneClickNormal());
+
         String username = "ebertuzzi2";
         String tbkUser = "";
         
@@ -71,7 +66,7 @@
             </div>
                     <%if(result.getToken()!=null){    %>
             <p><samp>Sesion iniciada con exito en Webpay</samp></p>
-            <br><form action='<%=result.getUrlWebpay()%>' method="post"><input type="hidden" name="TBK_TOKEN" value='<%=result.getToken()%>'><input type="submit" value="Ejecutar Inscripcion con WebPay"></form>
+            <br><form action='<%=result.getUrlWebpay()%>' method="post"><input type="hidden" name="TBK_TOKEN" value='<%=result.getToken()%>'><input type="submit" value="Ejecutar Inscripcion con Webpay"></form>
             <br>                        
                     <%}else{                                    %>                    
             <p><samp>Ocurrio un error en la operacion InitTransaction Webpay.</samp></p>                            
