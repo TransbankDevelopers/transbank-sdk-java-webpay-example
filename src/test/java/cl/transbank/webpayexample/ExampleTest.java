@@ -43,6 +43,7 @@ public class ExampleTest {
         $("#TBK_TIPO_TARJETA").click();
         $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
         $("#TBK_CVV").setValue("123").pressTab();
+        $("body").shouldHave(text("Sin cuotas"));
         $("#button").click(); // Pagar
 
         authorizeWebpayPayment();
@@ -95,7 +96,7 @@ public class ExampleTest {
         $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
         $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
         $("#TBK_CVV").setValue("123").pressTab();
-
+        $("body").shouldHave(text("Sin cuotas"));
         $("#button").click(); // Pagar
 
         authorizeWebpayPayment();
