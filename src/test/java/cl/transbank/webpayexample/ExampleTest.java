@@ -112,6 +112,34 @@ public class ExampleTest {
         $("body").shouldHave(text("Pago ACEPTADO por webpay"));
     }
 
+    @Test
+    public void testWebpayOneClickNormal() {
+        $(byText("Webpay OneClick Normal")).click();
+
+        $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
+        $("input[type=submit]").click(); // Ejecutar Inscripcion con Webpay
+
+        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
+        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
+        $("#TBK_CVV").setValue("123").pressTab();
+
+        $("#button").click(); // Pagar
+
+        authorizeWebpayPayment();
+
+        $("body").shouldHave(text("Pago ACEPTADO por webpay"));
+        $("input[type=submit]").click(); // Ejecutar Authorize
+
+        $("body").shouldHave(text("Pago ACEPTADO por webpay"));
+        $("input[type=submit]").click(); // Ejecutar Reverse Transaction
+
+        $("body").shouldHave(text("Operacion ACEPTADA por webpay"));
+        $("input[type=submit]").click(); // Ejecutar Remove User
+
+        $("body").shouldHave(text("Operacion ACEPTADA por webpay"));
+
+    }
+
     private void authorizeWebpayPayment() {
         switchTo().frame("transicion");
         $("body").shouldHave(text("BIENVENIDO"));
@@ -121,9 +149,6 @@ public class ExampleTest {
         $(byValue("Continuar")).click();
     }
 
-    private void authorizeWebpayPaymentWithRutAndPassword() {
-
-    }
 
     @AfterClass
     public static void logout() {
