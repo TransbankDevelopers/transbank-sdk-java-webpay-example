@@ -45,12 +45,7 @@ public class ExampleTest {
         $("#TBK_CVV").setValue("123").pressTab();
         $("#button").click(); // Pagar
 
-        switchTo().frame("transicion");
-        $("body").shouldHave(text("BIENVENIDO"));
-        $("#rutClient").setValue("11.111.111-1").pressTab();
-        $("#passwordClient").setValue("123").pressTab();
-        $(byValue("Aceptar")).click();
-        $(byValue("Continuar")).click();
+        authorizeWebpayPayment();
 
         $("body").shouldHave(text("Pago ACEPTADO por webpay"));
         $("input[type=submit]").click();
@@ -76,12 +71,7 @@ public class ExampleTest {
         $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
         $("#button").click(); // Pagar
 
-        switchTo().frame("transicion");
-        $("body").shouldHave(text("BIENVENIDO"));
-        $("#rutClient").setValue("11.111.111-1").pressTab();
-        $("#passwordClient").setValue("123").pressTab();
-        $(byValue("Aceptar")).click();
-        $(byValue("Continuar")).click();
+        authorizeWebpayPayment();
 
         $("body").shouldHave(text("Pago ACEPTADO por webpay"));
         $("input[type=submit]").click();
@@ -108,12 +98,7 @@ public class ExampleTest {
 
         $("#button").click(); // Pagar
 
-        switchTo().frame("transicion");
-        $("body").shouldHave(text("BIENVENIDO"));
-        $("#rutClient").setValue("11.111.111-1").pressTab();
-        $("#passwordClient").setValue("123").pressTab();
-        $(byValue("Aceptar")).click();
-        $(byValue("Continuar")).click();
+        authorizeWebpayPayment();
 
         $("body").shouldHave(text("Pago ACEPTADO por webpay"));
         $("input[type=submit]").click();
@@ -125,6 +110,19 @@ public class ExampleTest {
         $("input[type=submit]").click(); // Realizar Captura diferida
 
         $("body").shouldHave(text("Pago ACEPTADO por webpay"));
+    }
+
+    private void authorizeWebpayPayment() {
+        switchTo().frame("transicion");
+        $("body").shouldHave(text("BIENVENIDO"));
+        $("#rutClient").setValue("11.111.111-1").pressTab();
+        $("#passwordClient").setValue("123").pressTab();
+        $(byValue("Aceptar")).click();
+        $(byValue("Continuar")).click();
+    }
+
+    private void authorizeWebpayPaymentWithRutAndPassword() {
+
     }
 
     @AfterClass
