@@ -1,18 +1,14 @@
 package cl.transbank.webpayexample;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.junit.ScreenShooter;
 import org.junit.*;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.disappears;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byValue;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.addListener;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 public class ExampleTest {
@@ -35,16 +31,18 @@ public class ExampleTest {
     @Test
     public void testWebpayPlusNormal() {
         $(byText("Webpay Plus Normal")).click();
-
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Pago con Webpay
 
-        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
-        $("#TBK_TIPO_TARJETA").click();
-        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
-        $("#TBK_CVV").setValue("123").pressTab();
+        $("body").shouldHave(text("Selecciona tu medio de pago"));
+        $("img[alt=visa]").click();
+        $("#visa-card-show").setValue("4051885600446623").pressTab();
+        $("#password-invalid").setValue("123").pressTab(); // CCV
+
+        $("button[disabled]").should(disappear);
+        $(withText("Continuar")).click();
         $("body").shouldHave(text("Sin cuotas"));
-        $("#button").click(); // Pagar
+        $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
 
@@ -52,7 +50,7 @@ public class ExampleTest {
         $("input[type=submit]").click();
 
         $("body").shouldHave(text("Su transacción fue realizada con éxito."));
-        $("#button4").click(); // Continuar
+        $(withText("Ir a detalle de la compra")).click();
 
         $("body").shouldHave(text("Transaccion Finalizada"));
         $("input[type=submit]").click(); // Anular Transaccion
@@ -67,10 +65,14 @@ public class ExampleTest {
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Pago con Webpay
 
-        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
-        $("#TBK_TIPO_TARJETA").click();
-        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
-        $("#button").click(); // Pagar
+        $("body").shouldHave(text("Selecciona tu medio de pago"));
+        $("img[alt=visa]").click();
+        $("#visa-card-show").setValue("4051885600446623").pressTab();
+
+        $("button[disabled]").should(disappear);
+        $(withText("Continuar")).click();
+        $("body").shouldHave(text("Sin cuotas"));
+        $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
 
@@ -78,7 +80,7 @@ public class ExampleTest {
         $("input[type=submit]").click();
 
         $("body").shouldHave(text("Su transacción fue realizada con éxito."));
-        $("#button4").click(); // Continuar
+        $(withText("Ir a detalle de la compra")).click();
 
         $("body").shouldHave(text("Transaccion Finalizada"));
         $("input[type=submit]").click(); // Anular
@@ -93,11 +95,14 @@ public class ExampleTest {
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Pago con Webpay
 
-        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
-        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
-        $("#TBK_CVV").setValue("123").pressTab();
+        $("body").shouldHave(text("Esta transacción se esta realizando bajo un sistema seguro"));
+        $("#visa-card-show").setValue("4051885600446623").pressTab();
+        $("#password-invalid").setValue("123").pressTab(); // CCV
+
+        $("button[disabled]").should(disappear);
+        $(withText("Continuar")).click();
         $("body").shouldHave(text("Sin cuotas"));
-        $("#button").click(); // Pagar
+        $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
 
@@ -105,7 +110,7 @@ public class ExampleTest {
         $("input[type=submit]").click();
 
         $("body").shouldHave(text("Su transacción fue realizada con éxito."));
-        $("#button4").click(); // Continuar
+        $(withText("Ir a detalle de la compra")).click();
 
         $("body").shouldHave(text("Transaccion Finalizada"));
         $("input[type=submit]").click(); // Realizar Captura diferida
@@ -120,11 +125,12 @@ public class ExampleTest {
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Inscripcion con Webpay
 
-        $("body").shouldHave(text("Esta transacción se está realizando sobre un sistema seguro"));
-        $("#TBK_NUMERO_TARJETA").setValue("4051885600446623").pressTab();
-        $("#TBK_CVV").setValue("123").pressTab();
+        $("body").shouldHave(text("Esta transacción se esta realizando bajo un sistema seguro"));
+        $("#visa-card-show").setValue("4051885600446623").pressTab();
+        $("#password-invalid").setValue("123").pressTab(); // CCV
 
-        $("#button").click(); // Pagar
+        $("button[disabled]").should(disappear);
+        $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
 
