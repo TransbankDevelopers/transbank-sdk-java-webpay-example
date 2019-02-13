@@ -11,6 +11,8 @@
 <%@page import="cl.transbank.webpay.Webpay"%>
 <%@page import="cl.transbank.webpay.security.SoapSignature"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="common/shared.jsp" %>
+
 <!DOCTYPE html>
 
     <head>
@@ -26,7 +28,14 @@
         
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
-        Configuration configuration = Configuration.forTestingWebpayPlusMall();
+
+        if (configurationPlusMall == null) {
+            configurationPlusMall = Configuration.forTestingWebpayPlusMall();
+            System.out.println("Credentials for testing");
+        }
+
+        Configuration configuration = configurationPlusMall;
+
         Webpay webpay = new Webpay(configuration);
        
         /** Si la URL no trae data muestra Menú */

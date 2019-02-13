@@ -10,6 +10,8 @@
 <%@page import="cl.transbank.webpay.Webpay"%>
 <%@page import="cl.transbank.webpay.security.SoapSignature"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="common/shared.jsp" %>
+
 <!DOCTYPE html>
 
     <head>
@@ -22,8 +24,15 @@
 
         String action = request.getParameter("action");  
         if(action == null)action="OneClickInitInscription";
-        
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayOneClickNormal());
+
+        if (configurationOneClickNormal == null) {
+            configurationOneClickNormal = Configuration.forTestingWebpayOneClickNormal();
+            System.out.println("Credentials for testing");
+        }
+
+        Configuration configuration = configurationOneClickNormal;
+
+        Webpay webpay = new Webpay(configuration);
 
         String username = "ebertuzzi2";
         String tbkUser = "";

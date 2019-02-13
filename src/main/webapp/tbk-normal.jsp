@@ -26,10 +26,12 @@
         if(action == null)action="webpayNormalInit";
         String buyOrder = "", authorizationCode="", authorizedAmount=""; 
 
-        if (configuration == null) {
-            configuration = Configuration.forTestingWebpayPlusNormal();
+        if (configurationPlusNormal == null) {
+            configurationPlusNormal = Configuration.forTestingWebpayPlusNormal();
             System.out.println("Credentials for testing");
         }
+
+        Configuration configuration = configurationPlusNormal;
         Webpay webpay = new Webpay(configuration);
        
         /** Si la URL no trae data muestra Menú */

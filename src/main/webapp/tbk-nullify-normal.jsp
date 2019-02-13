@@ -22,9 +22,12 @@
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
 
-        if (configuration == null) {
-            configuration = Configuration.forTestingWebpayPlusNormal();
+        if (configurationPlusNormal == null) {
+            configurationPlusNormal = Configuration.forTestingWebpayPlusNormal();
+            System.out.println("Credentials for testing");
         }
+
+        Configuration configuration = configurationPlusNormal;
         
         Webpay webpay = new Webpay(configuration);
        
