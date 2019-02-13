@@ -28,6 +28,7 @@
 
         if (configuration == null) {
             configuration = Configuration.forTestingWebpayPlusNormal();
+            System.out.println("Credentials for testing");
         }
         Webpay webpay = new Webpay(configuration);
        
