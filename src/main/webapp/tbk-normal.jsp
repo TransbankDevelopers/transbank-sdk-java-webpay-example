@@ -45,7 +45,7 @@
             try{
                 urlReturn = request.getRequestURL().toString()+"?action=webpayNormalGetResult";
                 urlFinal = request.getRequestURL().toString()+"?action=end";
-                amount = 1000;
+                amount = 1;
                 
                 //Se genera un numero aleatorio para la orden de compra.
                 Random r = new Random();
