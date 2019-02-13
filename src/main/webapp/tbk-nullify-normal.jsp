@@ -8,6 +8,7 @@
 <%@page import="cl.transbank.webpay.Webpay"%>
 <%@page import="cl.transbank.webpay.security.SoapSignature"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="common/shared.jsp" %>
 <!DOCTYPE html>
 
     <head>
@@ -20,8 +21,12 @@
 
         String action = request.getParameter("action");  
         if(action == null)action="webpayNormalInit";
+
+        if (configuration == null) {
+            configuration = Configuration.forTestingWebpayPlusNormal();
+        }
         
-        Webpay webpay = new Webpay(Configuration.forTestingWebpayPlusNormal());
+        Webpay webpay = new Webpay(configuration);
        
         /** Si la URL no trae data muestra Menú */
         if (action == null) {      
