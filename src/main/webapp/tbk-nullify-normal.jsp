@@ -69,7 +69,7 @@
             
             try{
              /** Codigo de Comercio */
-             Long commercecode = configuration.getCommerceCode();
+             Long commercecode = Long.valueOf(configuration.getCommerceCode());
 
              /** Código de autorización de la transacción que se requiere anular */
              String authorizationCode = request.getParameter("authorizationCode");
