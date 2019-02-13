@@ -44,7 +44,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <warName>java-webpay-inte</warName>
+                    <warName>java-webpay</warName>
                 </configuration>
             </plugin>
             <plugin>
@@ -52,7 +52,7 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.4.11.v20180605</version>
                 <configuration>
-                    <war>${project.basedir}/target/java-webpay-inte.war</war>
+                    <war>${project.basedir}/target/java-webpay.war</war>
                 </configuration>
             </plugin>
 
