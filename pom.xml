@@ -71,7 +71,10 @@
                             <name>selenide.reports</name>
                             <value>selenide-reports</value>
                         </property>
-
+                        <property>
+                            <name>wdm.chromeDriverVersion</name>
+                            <value>75.0.3770.8</value>
+                        </property>
                     </systemProperties>
                 </configuration>
             </plugin>
