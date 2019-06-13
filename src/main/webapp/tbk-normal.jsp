@@ -181,8 +181,10 @@
             } else if (request.getParameter("TBK_TOKEN") != null){
                 token = request.getParameter("TBK_TOKEN");
                 buyOrder = request.getParameter("TBK_ORDEN_COMPRA");
+                String tbkSessionId = request.getParameter("TBK_ID_SESION");
                 paramsResult = "[TBK_TOKEN] = " + token + "<br>";
-                paramsResult += "[TBK_ORDEN_COMPRA] = " + buyOrder;
+                paramsResult += "[TBK_ORDEN_COMPRA] = " + buyOrder + "<br>";
+                paramsResult += "[TBK_ID_SESION] = " + tbkSessionId;
             }
            %> 
            
