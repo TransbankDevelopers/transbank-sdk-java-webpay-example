@@ -228,8 +228,22 @@
                <%
             }            
         }else if(action.equalsIgnoreCase("end")){
-            String token = request.getParameter("token_ws");
-            String urlNextStep = request.getRequestURL().toString()+"?action=nullify";
+            String token = "";
+            String urlNextStep = "";
+            String buyOrder = "";
+            String paramsResult = "";
+            if (request.getParameter("token_ws") != null) {
+                token = request.getParameter("token_ws");
+                urlNextStep = request.getRequestURL().toString()+"?action=nullify";
+                paramsResult = "[token_ws] = " + token;
+            } else if(request.getParameter("TBK_TOKEN") != null){
+                token = request.getParameter("TBK_TOKEN");
+                buyOrder = request.getParameter("TBK_ORDEN_COMPRA");
+                String tbkSessionId = request.getParameter("TBK_ID_SESION");
+                paramsResult = "[TBK_TOKEN] = " + token + "<br>";
+                paramsResult += "[TBK_ORDEN_COMPRA] = " + buyOrder + "<br>";
+                paramsResult += "[TBK_ID_SESION] = " + tbkSessionId;
+            }
            %> 
            
            <h2>Step: End</h2>
@@ -240,39 +254,45 @@
             </div>
             <div style="background-color:lightgrey;">
                     <h3>result</h3>
-                    <%out.print("[token_ws] = "+token);%> 
+                    <%= paramsResult %> 
             </div>
-            <p><samp>Transaccion Finalizada</samp></p>
-            <br>
-            <br><form action="<%=urlNextStep%>" method="post">
-                <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=request.getParameter("authorizationCode")%>"> 
-                <input type="hidden" name="buyOrder" id="buyOrder" value="<%=request.getParameter("buyOrder")%>"> 
-                <input type="hidden" name="nullifyAmount" id="nullifyAmount" value="<%=request.getParameter("nullifyAmount")%>"> 
-                <input type="hidden" name="authorizedAmount" id="authorizedAmount" value="<%=request.getParameter("authorizedAmount")%>">                 
-                <input type="hidden" name="commerceCode" id="commerceCode" value="<%=request.getParameter("commerceCode")%>"> 
-                <input type="submit" value="Anular &raquo;">
+            <% if (request.getParameter("token_ws") != null) { %>
+                <p><samp>Transaccion Finalizada</samp></p>
                 <br>
-            </form>
-            <br>
-            <a href=".">&laquo; volver a index</a>
-            
-            <script> 
-                var authorizationCode = localStorage.getItem('authorizationCode');
-                document.getElementById("authorizationCode").value = authorizationCode;
-
-                var nullifyAmount = localStorage.getItem('nullifyAmount');
-                document.getElementById("nullifyAmount").value = nullifyAmount;
+                <br><form action="<%=urlNextStep%>" method="post">
+                    <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=request.getParameter("authorizationCode")%>"> 
+                    <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 
+                    <input type="hidden" name="nullifyAmount" id="nullifyAmount" value="<%=request.getParameter("nullifyAmount")%>"> 
+                    <input type="hidden" name="authorizedAmount" id="authorizedAmount" value="<%=request.getParameter("authorizedAmount")%>">                 
+                    <input type="hidden" name="commerceCode" id="commerceCode" value="<%=request.getParameter("commerceCode")%>"> 
+                    <input type="submit" value="Anular &raquo;">
+                    <br>
+                </form>
+                <br>
+                <a href=".">&laquo; volver a index</a>
                 
-                var authorizedAmount = localStorage.getItem('authorizedAmount');
-                document.getElementById("authorizedAmount").value = authorizedAmount;
-                
-                var buyOrder = localStorage.getItem('buyOrder');
-                document.getElementById("buyOrder").value = buyOrder;                
+                <script> 
+                    var authorizationCode = localStorage.getItem('authorizationCode');
+                    document.getElementById("authorizationCode").value = authorizationCode;
 
-                var commerceCode = localStorage.getItem('commerceCode');
-                document.getElementById("commerceCode").value = commerceCode;            
-                //localStorage.clear();            
-            </script>
+                    var nullifyAmount = localStorage.getItem('nullifyAmount');
+                    document.getElementById("nullifyAmount").value = nullifyAmount;
+                    
+                    var authorizedAmount = localStorage.getItem('authorizedAmount');
+                    document.getElementById("authorizedAmount").value = authorizedAmount;
+                    
+                    var buyOrder = localStorage.getItem('buyOrder');
+                    document.getElementById("buyOrder").value = buyOrder;                
+
+                    var commerceCode = localStorage.getItem('commerceCode');
+                    document.getElementById("commerceCode").value = commerceCode;            
+                    //localStorage.clear();            
+                </script>
+            <% } else if (request.getParameter("TBK_TOKEN") != null) {%>
+                <p><samp>Transaccion Abortada</samp></p>
+                <br>
+                <a href=".">&laquo; volver a index</a>
+            <% } %>
             
         <%       
 
