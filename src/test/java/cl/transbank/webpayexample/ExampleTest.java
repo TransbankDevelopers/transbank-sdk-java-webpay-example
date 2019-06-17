@@ -71,7 +71,7 @@ public class ExampleTest {
         $("#visa-card-show").setValue("4051885600446623").pressTab();
 
         $("button[disabled]").should(disappear);
-        $(withText("Continuar")).click();
+        $("button.next-padd").click();
         sleep(1000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
