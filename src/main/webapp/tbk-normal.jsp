@@ -168,11 +168,24 @@
                <%               
             }            
         }else if(action.equalsIgnoreCase("end")){
-            String token = request.getParameter("token_ws");
-            String urlNextStep = request.getRequestURL().toString()+"?action=nullify";
-            buyOrder = request.getParameter("buyOrder");
-            authorizationCode = request.getParameter("authorizationCode");
-            authorizedAmount = request.getParameter("authorizedAmount");
+            String paramsResult = "";
+            String token = "";
+            String urlNextStep = "";
+            if (request.getParameter("token_ws") != null) {
+                token = request.getParameter("token_ws");
+                urlNextStep = request.getRequestURL().toString()+"?action=nullify";
+                buyOrder = request.getParameter("buyOrder");
+                authorizationCode = request.getParameter("authorizationCode");
+                authorizedAmount = request.getParameter("authorizedAmount");
+                paramsResult = "[token_ws] = " + token;
+            } else if (request.getParameter("TBK_TOKEN") != null){
+                token = request.getParameter("TBK_TOKEN");
+                buyOrder = request.getParameter("TBK_ORDEN_COMPRA");
+                String tbkSessionId = request.getParameter("TBK_ID_SESION");
+                paramsResult = "[TBK_TOKEN] = " + token + "<br>";
+                paramsResult += "[TBK_ORDEN_COMPRA] = " + buyOrder + "<br>";
+                paramsResult += "[TBK_ID_SESION] = " + tbkSessionId;
+            }
            %> 
            
            <h2>Step: End</h2>
@@ -183,19 +196,20 @@
             </div>
             <div style="background-color:lightgrey;">
                     <h3>result</h3>
-                    <%out.print("[token_ws] = "+token);%> 
+                    <%= paramsResult %> 
             </div>
-            <p><samp>Transaccion Finalizada</samp></p>
-            <br>
-            <br><form action="<%=urlNextStep%>" method="post">
-                <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
-                <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 
-                <input type="hidden" name="authorizedAmount" id="authorizedAmount" value="<%=authorizedAmount%>"> 
-                <input type="hidden" name="token_ws" id="token_ws" value="<%=token%>">                 
-                <input type="submit" value="Anular Transaccion &raquo;">
+            <% if (request.getParameter("token_ws") != null) { %>
+                <p><samp>Transaccion Finalizada</samp></p>
                 <br>
-            </form>
-            <br>
+                <br><form action="<%=urlNextStep%>" method="post">
+                    <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
+                    <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 
+                    <input type="hidden" name="authorizedAmount" id="authorizedAmount" value="<%=authorizedAmount%>"> 
+                    <input type="hidden" name="token_ws" id="token_ws" value="<%=token%>">                 
+                    <input type="submit" value="Anular Transaccion &raquo;">
+                    <br>
+                </form>
+                <br>
             <a href=".">&laquo; volver a index</a>
                 
             <script> 
@@ -209,10 +223,13 @@
                 document.getElementById("buyOrder").value = buyOrder;            
                 //localStorage.clear();            
             </script>
-            
-        <%       
-  
-        }else if(action.equalsIgnoreCase("nullify")){
+            <% } else if (request.getParameter("TBK_TOKEN") != null) {%>
+                <p><samp>Transaccion Abortada</samp></p>
+                <br>
+                <a href=".">&laquo; volver a index</a>
+            <% } %>
+        <%
+        } else if(action.equalsIgnoreCase("nullify")){
             String token = request.getParameter("token_ws");
             NullificationOutput result = new NullificationOutput();
             
