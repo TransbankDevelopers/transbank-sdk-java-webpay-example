@@ -41,7 +41,7 @@ public class ExampleTest {
 
         $("button[disabled]").should(disappear);
         $(withText("Continuar")).click();
-        sleep(1000);
+        sleep(4000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
@@ -72,7 +72,7 @@ public class ExampleTest {
 
         $("button[disabled]").should(disappear);
         $("button.next-padd").click();
-        sleep(5000);
+        sleep(4000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
@@ -103,7 +103,7 @@ public class ExampleTest {
 
         $("button[disabled]").should(disappear);
         $(withText("Continuar")).click();
-        sleep(1000);
+        sleep(4000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
