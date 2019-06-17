@@ -41,7 +41,7 @@ public class ExampleTest {
 
         $("button[disabled]").should(disappear);
         $(withText("Continuar")).click();
-        $("body").shouldHave(text("Sin cuotas"));
+        $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
@@ -101,7 +101,7 @@ public class ExampleTest {
 
         $("button[disabled]").should(disappear);
         $(withText("Continuar")).click();
-        $("body").shouldHave(text("Sin cuotas"));
+        $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
