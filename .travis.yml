@@ -4,8 +4,6 @@ jdk: oraclejdk8
 sudo: required
 addons:
   chrome: stable
-before_script:
-  - chromedriver-update 75.0.3770.8
 before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8080 &
 script:
