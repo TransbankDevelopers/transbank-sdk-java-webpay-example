@@ -40,8 +40,10 @@ public class ExampleTest {
         $("#password-invalid").setValue("123").pressTab(); // CCV
 
         $("button[disabled]").should(disappear);
+        System.out.println("-----------------------------------------");
+        System.out.println("Numero de tarjeta: "+$("#visa-card-show").val());
         $(withText("Continuar")).click();
-        sleep(4000);
+        sleep(5000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
@@ -71,8 +73,10 @@ public class ExampleTest {
         $("#visa-card-show").setValue("4051885600446623").pressTab();
 
         $("button[disabled]").should(disappear);
+        System.out.println("-----------------------------------------");
+        System.out.println("Numero de tarjeta: "+$("#visa-card-show").val());
         $("button.next-padd").click();
-        sleep(4000);
+        sleep(5000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
@@ -102,8 +106,10 @@ public class ExampleTest {
         $("#password-invalid").setValue("123").pressTab(); // CCV
 
         $("button[disabled]").should(disappear);
+        System.out.println("-----------------------------------------");
+        System.out.println("Numero de tarjeta: "+$("#visa-card-show").val());
         $(withText("Continuar")).click();
-        sleep(4000);
+        sleep(5000);
         $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
