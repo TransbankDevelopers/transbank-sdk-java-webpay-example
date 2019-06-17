@@ -40,8 +40,11 @@ public class ExampleTest {
         $("#password-invalid").setValue("123").pressTab(); // CCV
 
         $("button[disabled]").should(disappear);
+        System.out.println("-----------------------------------------");
+        System.out.println("Numero de tarjeta: "+$("#visa-card-show").val());
         $(withText("Continuar")).click();
-        $("body").shouldHave(text("Sin cuotas"));
+        sleep(5000);
+        $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
@@ -70,8 +73,11 @@ public class ExampleTest {
         $("#visa-card-show").setValue("4051885600446623").pressTab();
 
         $("button[disabled]").should(disappear);
-        $(withText("Continuar")).click();
-        $("body").shouldHave(text("Sin cuotas"));
+        System.out.println("-----------------------------------------");
+        System.out.println("Numero de tarjeta: "+$("#visa-card-show").val());
+        $("button.next-padd").click();
+        sleep(5000);
+        $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
@@ -95,13 +101,16 @@ public class ExampleTest {
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Pago con Webpay
 
-        $("body").shouldHave(text("Esta transacción se esta realizando bajo un sistema seguro"));
+        $("body").shouldHave(text("Esta transacción se está realizando bajo un sistema seguro"));
         $("#visa-card-show").setValue("4051885600446623").pressTab();
         $("#password-invalid").setValue("123").pressTab(); // CCV
 
         $("button[disabled]").should(disappear);
+        System.out.println("-----------------------------------------");
+        System.out.println("Numero de tarjeta: "+$("#visa-card-show").val());
         $(withText("Continuar")).click();
-        $("body").shouldHave(text("Sin cuotas"));
+        sleep(5000);
+        $("body").shouldHave(text("Sin Cuotas"));
         $(withText("Continuar")).click();
 
         authorizeWebpayPayment();
@@ -125,7 +134,7 @@ public class ExampleTest {
         $("body").shouldHave(text("Sesion iniciada con exito en Webpay"));
         $("input[type=submit]").click(); // Ejecutar Inscripcion con Webpay
 
-        $("body").shouldHave(text("Esta transacción se esta realizando bajo un sistema seguro"));
+        $("body").shouldHave(text("Esta transacción se está realizando bajo un sistema seguro"));
         $("#visa-card-show").setValue("4051885600446623").pressTab();
         $("#password-invalid").setValue("123").pressTab(); // CCV
 
