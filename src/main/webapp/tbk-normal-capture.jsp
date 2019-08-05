@@ -169,13 +169,28 @@
                <%                
             }            
         }else if(action.equalsIgnoreCase("end")){
-
-            urlNextStep = request.getRequestURL().toString()+"?action=capture";
-            String token = request.getParameter("token_ws");
-            String buyOrder = request.getParameter("buyOrder");
-            String authorizationCode = request.getParameter("authorizationCode");
-            String captureAmount = request.getParameter("captureAmount");
-            
+            String paramsResult = "";
+            String token = "";
+            String buyOrder = "";
+            String authorizationCode = "";
+            String authorizedAmount = "";
+            String captureAmount = "";
+            if (request.getParameter("token_ws") != null) {
+                token = request.getParameter("token_ws");
+                urlNextStep = request.getRequestURL().toString()+"?action=capture";
+                buyOrder = request.getParameter("buyOrder");
+                authorizationCode = request.getParameter("authorizationCode");
+                authorizedAmount = request.getParameter("authorizedAmount");
+                captureAmount = request.getParameter("captureAmount");
+                paramsResult = "[token_ws] = " + token;
+            } else if (request.getParameter("TBK_TOKEN") != null){
+                token = request.getParameter("TBK_TOKEN");
+                buyOrder = request.getParameter("TBK_ORDEN_COMPRA");
+                String tbkSessionId = request.getParameter("TBK_ID_SESION");
+                paramsResult = "[TBK_TOKEN] = " + token + "<br>";
+                paramsResult += "[TBK_ORDEN_COMPRA] = " + buyOrder + "<br>";
+                paramsResult += "[TBK_ID_SESION] = " + tbkSessionId;
+            }
            %> 
            
            
@@ -187,33 +202,37 @@
             </div>
             <div style="background-color:lightgrey;">
                     <h3>result</h3>
-                    <%out.print("[token] = "+token);%> 
+                    <%= paramsResult %> 
             </div>
-            <p><samp>Transaccion Finalizada</samp></p>
-            <br><form action="<%=urlNextStep%>" method="post">
-                <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
-                <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 
-                <input type="hidden" name="captureAmount" id="captureAmount" value="<%=captureAmount%>"> 
-                <input type="hidden" name="token_ws" id="token_ws" value="<%=token%>">                 
-                <input type="submit" value="Realizar Captura diferida &raquo;">
+            <% if (request.getParameter("token_ws") != null) { %>
+                <p><samp>Transaccion Finalizada</samp></p>
+                <br><form action="<%=urlNextStep%>" method="post">
+                    <input type="hidden" name="authorizationCode" id="authorizationCode" value="<%=authorizationCode%>"> 
+                    <input type="hidden" name="buyOrder" id="buyOrder" value="<%=buyOrder%>"> 
+                    <input type="hidden" name="captureAmount" id="captureAmount" value="<%=captureAmount%>"> 
+                    <input type="hidden" name="token_ws" id="token_ws" value="<%=token%>">                 
+                    <input type="submit" value="Realizar Captura diferida &raquo;">
+                    <br>
+                </form>
                 <br>
-            </form>
-            <br>
-            <a href=".">&laquo; volver a index</a>
-                
-            <script> 
-                var authorizationCode = localStorage.getItem('authorizationCode');
-                document.getElementById("authorizationCode").value = authorizationCode;
+                <a href=".">&laquo; volver a index</a>
+                    
+                <script> 
+                    var authorizationCode = localStorage.getItem('authorizationCode');
+                    document.getElementById("authorizationCode").value = authorizationCode;
 
-                var amount = localStorage.getItem('captureAmount');
-                document.getElementById("captureAmount").value = amount;
+                    var amount = localStorage.getItem('captureAmount');
+                    document.getElementById("captureAmount").value = amount;
 
-                var buyOrder = localStorage.getItem('buyOrder');
-                document.getElementById("buyOrder").value = buyOrder;            
-                //localStorage.clear();            
-            </script>
-            
-            
+                    var buyOrder = localStorage.getItem('buyOrder');
+                    document.getElementById("buyOrder").value = buyOrder;            
+                    //localStorage.clear();            
+                </script>
+            <% } else if (request.getParameter("TBK_TOKEN") != null) {%>
+                <p><samp>Transaccion Abortada</samp></p>
+                <br>
+                <a href=".">&laquo; volver a index</a>
+            <% } %>
             
         <%       
      } else if (action.equalsIgnoreCase("capture")) {
