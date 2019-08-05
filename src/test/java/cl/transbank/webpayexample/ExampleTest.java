@@ -71,6 +71,7 @@ public class ExampleTest {
         $("body").shouldHave(text("Selecciona tu medio de pago"));
         $("img[alt=visa]").click();
         $("#visa-card-show").setValue("4051885600446623").pressTab();
+        $("#password-invalid").setValue("123").pressTab();
 
         $("button[disabled]").should(disappear);
         System.out.println("-----------------------------------------");
