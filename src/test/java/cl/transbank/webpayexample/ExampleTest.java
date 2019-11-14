@@ -13,7 +13,7 @@ import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 public class ExampleTest {
 
-    @Rule
+   /* @Rule
     public ScreenShooter screenShooter = ScreenShooter.failedTests();
 
     @BeforeClass
@@ -160,6 +160,6 @@ public class ExampleTest {
     @AfterClass
     public static void logout() {
         closeWebDriver();
-    }
+    }*/
 
 }
