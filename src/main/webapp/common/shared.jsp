@@ -7,6 +7,8 @@ Configuration createConfiguration(String prefixName) {
   String commerceCode = System.getenv(prefixName + "_COMMERCE_CODE");
   String privateKey = System.getenv(prefixName + "_PRIVATE_KEY");
   String publicCert = System.getenv(prefixName + "_PUBLIC_CERT");
+  System.out.println(prefixName + "_PRIVATE_KEY: " + privateKey);
+  System.out.println(prefixName + "_PUBLIC_CERT: " + publicCert);
 
   if (commerceCode != null && privateKey != null && publicCert != null) {
       System.out.println(prefixName + " - Production credentials for " + commerceCode);
